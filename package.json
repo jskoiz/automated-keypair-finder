@@ -1,0 +1,16 @@
+{
+  "name": "solana-keygen-app",
+  "version": "1.0.0",
+  "description": "A Node.js app to generate Solana wallet addresses.",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-modules index.mjs"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.7.0",
+    "bs58": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
