@@ -5,9 +5,19 @@ import { Storage } from '@google-cloud/storage';
 const storage = new Storage();
 const bucketName = 'solanapow'; // Replace with your actual bucket name
 
-// Your original script code
-const prefix = process.env.SOLANA_PREFIX || 'defaultPrefix';
-const args = ['grind', '--starts-with', prefix];
+// Retrieve the number of threads from the environment variable or default to 8
+const numThreads = process.env.SOLANA_NUM_THREADS || '8';
+
+// Retrieve the prefixes from the environment variable
+// The prefixes should be space-delimited in the environment variable
+const prefixes = process.env.SOLANA_PREFIXES ? process.env.SOLANA_PREFIXES.split(' ') : [];
+
+// Construct args array for the solana-keygen grind command using the specified number of threads
+const args = ['grind', '--num-threads', numThreads];
+prefixes.forEach(prefix => {
+  args.push('--starts-with', prefix);
+});
+
 let intervalId; // Declare outside to clear it later in the 'close' event
 
 const executeCommand = (cmd, args) => {
