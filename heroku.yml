@@ -1,5 +1,0 @@
-build:
-  docker:
-    web: Dockerfile
-run:
-  worker: node index.mjs  # This line ensures that your worker starts with the correct command
